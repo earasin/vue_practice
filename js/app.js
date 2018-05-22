@@ -13,15 +13,20 @@ const vm = new Vue({
     },
     mounted() {
       axios.get(url).then(response => {
-        this.posts = response.data
+        this.posts = response.data;
       })
     },
 		computed: {
-		filteredPosts() {
-				return this.posts.filter(post => {
-					return post.title.toLowerCase().includes(this.search.toLowerCase())
-				});
-			}
+			filteredPosts() {
+					return _.filter(this.posts, ['title', this.search.toLowerCase()]);
+					
+				}
+
+		// filteredPosts() {
+		// 		return this.posts.filter(post => {
+		// 			return post.title.toLowerCase().includes(this.search.toLowerCase())
+		// 		});
+		// 	}
 		}
 
 });
